@@ -12,6 +12,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LOGGER_FLAGS=""
 
+echo -n "-----> THE CACHE MUST DIE..."
+rm -rf ${CACHE_DIR}
+
 curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
 . bin/java
 
