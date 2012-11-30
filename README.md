@@ -1,0 +1,1 @@
+This is a customization of the [Heroku Java buildpack](https://github.com/heroku/heroku-buildpack-java) that is probably not useful outside of the app I created it for.
