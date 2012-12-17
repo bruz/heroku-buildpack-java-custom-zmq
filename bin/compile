@@ -57,3 +57,25 @@ if [ -f ${BUILD_DIR}/system.properties ]; then
 fi
 
 logger -p user.notice -t "slugc[$$]" "language_pack_java java_compile_end $LOGGER_FLAGS"
+
+VENDORED_LIBZMQ="http://vulcan-lpetre.herokuapp.com/output/03e1a880-0ddc-4478-9d4f-ed9b248ae65c"
+VENDORED_UUID="http://vulcan-lpetre.herokuapp.com/output/e6b47a30-4832-4fe6-944e-9770af028d51"
+
+echo "-----> Bootstrapping libzmq."
+
+export START_DIR=$(pwd)
+
+mkdir -p .heroku/vendor
+cd .heroku/vendor
+
+curl -s -L -o tmp-uuid.tar.gz $VENDORED_UUID
+tar -zxvf tmp-uuid.tar.gz > /dev/null
+rm tmp-uuid.tar.gz
+
+curl -s -L -o tmp-libzmq.tar.gz $VENDORED_LIBZMQ
+tar -zxvf tmp-libzmq.tar.gz > /dev/null
+rm tmp-libzmq.tar.gz
+
+export ZMQ_DIR=$(pwd)
+cd $START_DIR
+
